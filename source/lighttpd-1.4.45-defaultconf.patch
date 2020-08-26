@@ -1,0 +1,57 @@
+--- doc/config/lighttpd.conf~	2014-03-12 11:40:36.000000000 -0500
++++ doc/config/lighttpd.conf	2014-07-07 08:22:46.934838985 -0500
+@@ -417,7 +417,7 @@
+ ##     # Check your cipher list with: openssl ciphers -v '...' (use single quotes as your shell won't like ! in double quotes)
+ ##     #
+ ##     # If you know you have RSA keys (standard), you can use:
+-##     ssl.cipher-list             = "aRSA+HIGH !3DES +kEDH +kRSA !kSRP !kPSK"
++##     ssl.cipher-list             = "PROFILE=SYSTEM"
+ ##     # The more generic version (without the restriction to RSA keys) is
+ ##     # ssl.cipher-list           = "HIGH !aNULL !3DES +kEDH +kRSA !kSRP !kPSK"
+ ##     #
+--- doc/config/lighttpd.conf~	2016-03-01 10:14:50.000000000 -0500
++++ doc/config/lighttpd.conf	2016-03-01 10:17:59.194568947 -0500
+@@ -14,7 +14,7 @@
+ ## chroot example aswell.
+ ##
+ var.log_root    = "/var/log/lighttpd"
+-var.server_root = "/srv/www"
++var.server_root = "/var/www"
+ var.state_dir   = "/var/run"
+ var.home_dir    = "/var/lib/lighttpd"
+ var.conf_dir    = "/etc/lighttpd"
+--- doc/config/lighttpd.conf.orig	2016-07-19 09:09:39.000000000 -0500
++++ doc/config/lighttpd.conf	2016-07-19 09:25:40.282577966 -0500
+@@ -204,7 +204,9 @@
+ ## By default lighttpd would not change the operation system default.
+ ## But setting it to 2048 is a better default for busy servers.
+ ##
+-server.max-fds = 2048
++## With SELinux enabled, this is denied by default and needs to be allowed
++## by running the following once : setsebool -P httpd_setrlimit on  
++#server.max-fds = 2048
+ 
+ ##
+ ## listen-backlog is the size of the listen() backlog queue requested when
+--- doc/config/lighttpd.conf~	2016-08-05 08:24:07.000000000 -0500
++++ doc/config/lighttpd.conf	2016-08-05 08:26:43.914683962 -0500
+@@ -112,7 +112,7 @@
+ ##
+ ## Document root
+ ##
+-server.document-root = server_root + "/htdocs"
++server.document-root = server_root + "/lighttpd"
+ 
+ ##
+ ## The value for the "Server:" response field.
+--- doc/config/lighttpd.conf~	2016-06-28 12:32:10.000000000 -0500
++++ doc/config/lighttpd.conf	2016-06-28 12:41:50.478761160 -0500
+@@ -67,7 +67,7 @@
+ ## conf.d/fastcgi.conf
+ ## conf.d/scgi.conf
+ ##
+-var.socket_dir  = home_dir + "/sockets"
++var.socket_dir  = state_dir + "/sockets"
+ 
+ ##
+ #######################################################################
