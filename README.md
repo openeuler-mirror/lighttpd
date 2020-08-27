@@ -6,20 +6,13 @@
 无论是个人、团队、或是企业，都能够用码云实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
 
 #### 软件架构
-软件架构说明
 
-
+aarch64
 #### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
+rpm -ivh 软件包名
 
 #### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
+见迁移技术白皮书
 
 #### 参与贡献
 
